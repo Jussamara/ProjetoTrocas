@@ -1,0 +1,36 @@
+<div class = "container">
+<h3>{{titulo}}</h3>
+<div class="form">
+  <form>
+    <label for="nome">Nome</label>
+    <input type="text" id="nome" name="nome" placeholder="name"
+     [(ngModel)] = "produto.nome">
+    <label for="descricao">Descrição</label>
+    <input type="text" id="descricao" name="descricao" placeholder="Descreva o movel, medidas, cor, material"
+    [(ngModel)] = "produto.descricao">
+      <label for="local">Local</label>
+    <input type="text" id="local" name="local" placeholder="Cidade e Bairro"
+    [(ngModel)] = "produto.local">
+
+        <form action="#">
+          <div class="file-field input-field">
+            <div class="btn">
+              <span>Escolha uma foto</span>
+              <input type="file">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="img" id="img" name="img"
+              [(ngModel)] = "produto.img">
+            </div>
+          </div>
+        </form>
+      <div class="buttons">
+      <input type="button" (click) = "salvarProduto()" value="Salvar">
+      <input type="button" (click) = "cancelar()" value="Cancelar">
+      </div>
+  <!--    <input id="name" type="text" class="validate"
+               [(ngModel)]="user.name" formControlName="name"-->
+</form>
+</div>
+</div>
+
