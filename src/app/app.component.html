@@ -1,0 +1,30 @@
+<nav *ngIf="mostrarMenu">
+    <div class="nav-wrapper">
+        <div class="nav-wrapper grey">
+            <a class="brand-logo" style="left:50px;">TrocaMoveis</a>
+            <a data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul class="right hide-on-med-and-down">
+                <li routerLinkActive="active"><a routerLink="/inicio">Página Inicial</a></li>
+                <li routerLinkActive="active"><a routerLink="/trocas">Trocas</a></li>
+                <li routerLinkActive="active"><a routerLink="/novo">Cadastrar Trocas</a></li>
+                <li routerLinkActive="active"><a routerLink="/lista">Lista de Trocas</a></li>
+                <li routerLinkActive="active"><a routerLink="/usuariolista">Lista de Usuários</a></li>
+                <li routerLinkActive="active"><a routerLink="/usuarionovo">Cadastrar-se</a></li>
+                <li routerLinkActive="active"><a routerLink="/login">Login</a></li>
+            </ul>
+            <ul class="side-nav" id="mobile-demo">
+                <li><a>Página Inicial</a></li>
+                <li><a>Trocas</a></li>
+                <li><a>Cadastrar Trocas</a></li>
+                <li><a>Lista de Trocas</a></li>
+                <li><a>Lista de Usuários</a></li>
+                <li><a>Cadastrar-se</a></li>
+                <li><a>Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <router-outlet></router-outlet>
+</div>

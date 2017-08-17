@@ -1,0 +1,31 @@
+<div class="container">
+    <h3>{{titulo}}</h3>
+    <table>
+        <tr *ngFor="let produto of produtos">
+            <th></th>
+            <th>Nome do Movel</th>
+            <td>{{produto.nome}}
+                <td>
+                    <th></th>
+                    <th>Descrição</th>
+                    <td>{{produto.descricao}}
+                        <td>
+                            <th></th>
+                            <th>Estado</th>
+                            <td>{{produto.estado}}
+                                <td>
+                                    <th></th>
+                                    <th>Cidade</th>
+                                    <td>{{produto.cidade}}
+                                        <td>
+                                            <th></th>
+                                            <th>Imagem</th>
+                                            <td>{{produto.img}}
+                                                <td>
+                                                    <img class="activator" src={{urlImagem}}>
+                                                    <!--<td><a [routerLink]="['/edicao', produto.id]">Editar</a></td>
+                                                            <td><a routerLink="/lista" (click)="remover(produto)">Remover</a></td>-->
+        </tr>
+    </table>
+
+</div>

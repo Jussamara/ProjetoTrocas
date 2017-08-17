@@ -1,0 +1,20 @@
+<div class = "container">
+<h3>{{titulo}}</h3>
+<table>
+  <tr>
+    <th>Nome</th>
+    <th>Email</th>
+    <th>Telefone</th>
+    <th>Editar</th>
+    <th>Remover</th>
+  </tr>
+  <tr *ngFor="let usuario of usuarios;let ind=usuario">
+    <td>{{usuario.nome}}</td>
+    <td>{{usuario.email}}</td>
+    <td>{{usuario.telefone}}</td>
+    <td><a [routerLink]="['/refazer', usuario.id]">Editar</a></td>
+    <td><a routerLink="/usuariolista" (click)= "excluirUsuario(usuario)">Remover</a></td>
+  </tr>
+  <a routerLink="/usuarionovo"> NOVO USUARIO </a> 
+</table>
+</div>
