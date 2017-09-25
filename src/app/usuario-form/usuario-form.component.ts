@@ -13,43 +13,45 @@ export class UsuarioFormComponent implements OnInit {
   titulo = "Cadastro de Usuários";
   usuario: Usuario = new Usuario();
   erro: string;
-  codigo: number;
+  id: string;
 
   constructor(private servico:UsuariosService,
-              private router:Router, 
+              private router:Router,
                private rota: ActivatedRoute) {}
   ngOnInit() {
 
-    this.codigo = this.rota.snapshot.params['id'];
+    this.id = this.rota.snapshot.params['id'];
 
-    if(isNaN(this.codigo)){
-      this.usuario = new Usuario();    
+    console.log('ID ', this.id);
+
+    if(!this.id){
+      this.usuario = new Usuario();
     }
     else{
-      this.servico.getUsuarioUrl(this.codigo).subscribe(
+      this.servico.getUsuarioUrl(this.id).subscribe(
         data => this.usuario = data,
         error => this.erro = error
       )
     }
   }
-    salvarUsuario(){  
-    if(isNaN(this.codigo)){
-      console.log(this.usuario);
+
+  salvarUsuario(){
+    if(!this.id){
       this.servico.adicionaUsuario(this.usuario).subscribe(
         usuario => this.router.navigate(['/usuariolista']),
         error => this.erro = error
         );
-      alert("Usuario "+this.usuario.nome+" adicionado com sucesso!");
-     // this.usuario = new Usuario(); 
-   }  
+      alert("Usuario "+this.usuario.name+" adicionado com sucesso!");
+     // this.usuario = new Usuario();
+   }
    else{
-      this.servico.atualizarUsuario(this.codigo, this.usuario).subscribe(
+      this.servico.atualizarUsuario(this.id, this.usuario).subscribe(
         data => this.router.navigate(['/usuariolista']));
         error => this.erro = error
-      
-      alert("Usuario "+this.usuario.nome+" editado com sucesso!");
+
+      alert("Usuario "+this.usuario.name+" editado com sucesso!");
     }
-    
+
     //this.router.navigate(['/usuariolista']);
   }
 

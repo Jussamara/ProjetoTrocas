@@ -14,7 +14,7 @@ import { Response, Headers } from '@angular/http';
 export class UsuariosService {
   extracData: any;
 
-  private url = "http://localhost:8080/api/users";
+  private url = "http://localhost:8080/api/users/";
 
   usuarios: Usuario[] = [];
 
@@ -48,21 +48,21 @@ export class UsuariosService {
         .catch((error:any)=>Observable.throw(error));
   }
   getUsuarioUrl(id):Observable<Usuario>{
-    let url = this.url+"/"+id;
+    let url = this.url + id;
     return this.http.get(url)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error));
   }
 
    excluirUsuario(usuario:Usuario): Observable<Usuario[]>{
-     let url = this.url+"/"+usuario.id
+     let url = this.url + usuario._id
     return this.http.delete(url)
     .map((res:Response)=>{})
       .catch((error:any)=>Observable.throw(error));
   }
 
-  atualizarUsuario(id:number, usuario:Usuario):Observable<Usuario>{
-    let url = this.url+"/"+id;
+  atualizarUsuario(id:string, usuario:Usuario):Observable<Usuario>{
+    let url = this.url + id;
     let bodyString = JSON.stringify(usuario);
     console.log(bodyString);
     let headers = new Headers({'Content-Type':'application/json'})

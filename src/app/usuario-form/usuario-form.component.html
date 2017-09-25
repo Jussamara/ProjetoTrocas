@@ -3,9 +3,12 @@
 
 
 <form *ngIf='usuario'>
-  nome:<input type="text" name="nome" [(ngModel)]="usuario.nome"><br />
+  nome:<input type="text" name="name" [(ngModel)]="usuario.name"><br />
+  cpf:<input type="text" name="cpf" [(ngModel)]="usuario.cpf"><br />
+  senha:<input type="password" name="senha" [(ngModel)]="usuario.senha"><br />
   email:<input type="text" name="email" [(ngModel)]="usuario.email"><br />
   telefone:<input type="text" name="telefone" [(ngModel)]="usuario.telefone"><br /><br />
+
   <input type="Button" (click)= "salvarUsuario()" value = "Cadastrar" ><br /><br />
   <input type="button" (click) = "voltar()" value="Cancelar">
 </form>

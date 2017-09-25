@@ -9,12 +9,12 @@
     <th>Remover</th>
   </tr>
   <tr *ngFor="let usuario of usuarios;let ind=usuario">
-    <td>{{usuario.nome}}</td>
+    <td>{{usuario.name}}</td>
     <td>{{usuario.email}}</td>
     <td>{{usuario.telefone}}</td>
-    <td><a [routerLink]="['/refazer', usuario.id]">Editar</a></td>
+    <td><a [routerLink]="['/refazer', usuario._id]">Editar</a></td>
     <td><a routerLink="/usuariolista" (click)= "excluirUsuario(usuario)">Remover</a></td>
   </tr>
-  <a routerLink="/usuarionovo"> NOVO USUARIO </a> 
+  <a routerLink="/usuarionovo"> NOVO USUARIO </a>
 </table>
 </div>
