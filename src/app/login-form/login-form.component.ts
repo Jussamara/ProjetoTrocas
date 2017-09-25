@@ -19,10 +19,10 @@ export class LoginFormComponent implements OnInit {
   }
 
   fazerLogin(){
-    //console.log(this.usuario);
-    this.authService.fazerLogin(this.usuario);
- 
-
+    this.authService.fazerLogin(this.usuario).subscribe(
+      data => {},
+      error => {}
+    )
   }
 
 }
