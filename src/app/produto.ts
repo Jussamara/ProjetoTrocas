@@ -1,9 +1,16 @@
+export class Endereco {
+  estado: string;
+  cidade: string;
+  rua: string;
+}
+
 export class Produto {
-    id: number;
+    _id: string;
     nome: string;
     descricao: string;
-    estado: string;
-    cidade: string;
-    img: any;
+    endereco: Endereco;
+    image: any;
+    status: boolean;
+    dono: string;
     constructor(){}
 }

@@ -14,22 +14,24 @@ import { Response, Headers } from '@angular/http';
 export class CrudProdutosService {
   extractData: any;
 
-   private url = "http://localhost:8080/api/moveis";
+  private url = "http://localhost:8080/api/moveis";
 
-   produto: Produto[]=[];
+  produto: Produto[]=[];
 
   constructor(private http: Http) { }
 
   headers():RequestOptions {
 		let headersParams = { 'Content-Type': 'application/json' };
+
     headersParams["Access-Control-Allow-Origin"] = "*";
 
 		//if (localStorage['token']) {
 		//	headersParams['Authorization'] = localStorage['token'];
  // }
 		let headers = new Headers(headersParams);
-    	let options = new RequestOptions({ headers: headers });
-    	return options;
+    let options = new RequestOptions({ headers: headers });
+
+    return options;
 	}
   getProdutos(): Observable<Produto[]>{
     return this.http.get(this.url)
@@ -37,36 +39,41 @@ export class CrudProdutosService {
     .catch((error:any)=>Observable.throw(error));
   }
 
-    adiciconarProduto(produto):Observable<Produto>{
-      let bodyString = JSON.stringify(produto);
-      console.log(bodyString);
-      let headers = new Headers({'Content-Type':'application/json'})
-      let options = new RequestOptions({headers:headers});
-      return this.http.post(this.url, bodyString, options)
-        .map((res:Response)=>{})
-        .catch((error:any)=>Observable.throw(error));
+  adiciconarProduto(produto):Observable<Produto>{
+    let bodyString = JSON.stringify(produto);
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({headers:headers});
+
+    return this.http.post(this.url, bodyString, options)
+      .map((res:Response)=>{})
+      .catch((error:any)=>Observable.throw(error));
   }
-    getProdutoUrl(id):Observable<Produto>{
-        let url = this.url + "/" + id;
-        return this.http.get(url)
-          .map((res:Response)=>res.json())
-          .catch((error:any)=>Observable.throw(error));
+
+  getProdutoUrl(id):Observable<Produto>{
+    let url = this.url + "/" + id;
+
+    return this.http.get(url)
+      .map((res:Response)=>res.json())
+      .catch((error:any)=>Observable.throw(error));
   }
-    removerProduto(produto:Produto): Observable<Produto[]>{
-      let url = this.url+"/"+produto.id
+
+  removerProduto(produto:Produto): Observable<Produto[]>{
+    let url = this.url+"/"+produto._id
+
     return this.http.delete(url)
-    .map((res:Response)=>{})
-    .catch((error:any)=>Observable.throw(error));
+      .map((res:Response)=>{})
+      .catch((error:any)=>Observable.throw(error));
   }
-   atualizaProduto(id:number, produto:Produto):Observable<Produto>{
-        let url = this.url+"/"+id;
-        let bodyString = JSON.stringify(produto);
-        console.log(bodyString);
-        let headers = new Headers({'Content-Type':'application/json'})
-        let options = new RequestOptions({headers:headers});
-    return this.http.put(url,
-    bodyString, options)
-    .map((res:Response)=>{})
-    .catch((error:any)=>Observable.throw(error));
+
+  atualizaProduto(id:string, produto:Produto):Observable<Produto>{
+    let url = this.url+"/"+id;
+    let bodyString = JSON.stringify(produto);
+
+    let headers = new Headers({'Content-Type':'application/json'})
+    let options = new RequestOptions({headers:headers});
+
+    return this.http.put(url, bodyString, options)
+      .map((res:Response)=>{})
+      .catch((error:any)=>Observable.throw(error));
   }
 }

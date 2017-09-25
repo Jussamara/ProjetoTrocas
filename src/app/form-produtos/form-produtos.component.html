@@ -3,19 +3,16 @@
 <div class="form">
   <form *ngIf='produto'>
     <label for="nome">nome</label>
-    <input type="text" id="nome" name="nome" placeholder="nome do movel "
-     [(ngModel)] = "produto.nome">
+    <input type="text" id="nome" name="nome" placeholder="nome do movel " [(ngModel)] = "produto.nome">
     <label for="descricao">Descrição</label>
-    <input type="text" id="descricao" name="descricao" placeholder="Descreva o , medidas, cor, material"
-    [(ngModel)] = "produto.descricao">
+    <input type="text" id="descricao" name="descricao" placeholder="Descreva o móvel, medidas, cor, material" [(ngModel)] = "produto.descricao">
     <label for="Estado">Estado</label>
-    <input type="text" id="Estado" name="Estado" placeholder="Escreva seu Estado"
-    [(ngModel)] = "produto.estado">
-     <label for="Cidade">Cidade</label>
-    <input type="text" id="cidade" name="Cidade" placeholder="Escreva sua Cidade"
-    [(ngModel)] = "produto.cidade">
-
-        <form action="#">
+    <input type="text" id="Estado" name="Estado" placeholder="Escreva seu Estado" [(ngModel)] = "produto.endereco.estado">
+    <label for="Cidade">Cidade</label>
+    <input type="text" id="cidade" name="Cidade" placeholder="Escreva sua Cidade" [(ngModel)] = "produto.endereco.cidade">
+    <label for="Cidade">URL da imagem do produto</label>
+    <input type="text" id="imagem" name="Imagem" placeholder="Imagem do produto" [(ngModel)] = "produto.imagem">
+        <!-- <form action="#">
           <div class="file-field input-field">
             <div class="btn">
               <span>Escolha uma foto</span>
@@ -26,7 +23,7 @@
               [(ngModel)] = "produto.img">
             </div>
           </div>
-        </form>
+        </form> -->
       <div class="buttons">
       <input type="button" (click) = "salvarProduto()" value="Salvar">
       <input type="button" (click) = "voltar()" value="Cancelar">

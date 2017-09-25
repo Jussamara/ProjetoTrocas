@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudProdutosService} from "app/crud-produtos.service";
-import { Produto} from "app/produto";
+import { Produto, Endereco } from "app/produto";
 import { Router, ActivatedRoute } from "@angular/router";
 
 @Component({
@@ -12,7 +12,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 export class FormProdutosComponent implements OnInit {
   titulo = 'Cadastro de Trocas';
   produto: Produto = new Produto;
-  id: number;
+  _id: string;
   msgErro: string;
 
   constructor(private servico: CrudProdutosService,
@@ -20,33 +20,36 @@ export class FormProdutosComponent implements OnInit {
   private rota: ActivatedRoute ) { }
 
   ngOnInit() {
-    this.id = this.rota.snapshot.params['cod'];
+    this._id = this.rota.snapshot.params['cod'];
 
-    if (isNaN(this.id)) {
+    if (!this._id) {
         this.produto = new Produto();
-      }
-       else {
-           this.servico.getProdutoUrl(this.id).subscribe(
-           data => this.produto = data,
-           error => this.msgErro = error)}
+        this.produto.endereco = new Endereco();
+    }
+    else {
+      this.servico.getProdutoUrl(this._id).subscribe(
+        data => {
+          console.log('produto carregado', data);
+          this.produto = data;
+        },
+        error => this.msgErro = error)
+    }
   }
   salvarProduto() {
-    if (isNaN(this.id)) {
-    console.log(this.produto);
-    this.servico.adiciconarProduto(this.produto).subscribe(
-      produto => this.router.navigate(['/lista']),
+    if (!this._id) {
+      this.servico.adiciconarProduto(this.produto).subscribe(
+        produto => this.router.navigate(['/lista']),
+        error => this.msgErro = error
+      );
+      alert ("Troca " + this.produto.nome + " adicionado com sucesso!");
+        this.produto = new Produto();
+  }
+  else {
+    this.servico.atualizaProduto(this._id, this.produto).subscribe(
+      data => this.router.navigate(['/lista']));
       error => this.msgErro = error
-    );
-    alert ("Troca " + this.produto.nome + " adicionado com sucesso!");
-      this.produto = new Produto();
- }
- else {
-   this.servico.atualizaProduto(this.id, this.produto).subscribe(
-     data => this.router.navigate(['/lista']));
-     error => this.msgErro = error
 
-
-    alert("Móvel "+this.produto.nome + " editado com sucesso!");
+      alert("Móvel "+this.produto.nome + " editado com sucesso!");
   }
 }
     voltar() {
