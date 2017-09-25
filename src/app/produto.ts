@@ -12,5 +12,8 @@ export class Produto {
     image: any;
     status: boolean;
     dono: string;
-    constructor(){}
+
+    constructor(){
+      this.endereco = new Endereco();
+    }
 }
