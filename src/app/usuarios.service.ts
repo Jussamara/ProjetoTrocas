@@ -14,23 +14,23 @@ import { Response, Headers } from '@angular/http';
 export class UsuariosService {
   extracData: any;
 
-  private url = "http://localhost:8080/ProjetoTrocas/webresources/usuarios";
-  
+  private url = "http://localhost:8080/api/users";
+
   usuarios: Usuario[] = [];
-  
+
 
   constructor(private http: Http) {}
 
    headers():RequestOptions {
-		let headersParams = { 'Content-Type': 'application/json' };
-    	headersParams["Access-Control-Allow-Origin"] = "*";
+    let headersParams = { 'Content-Type': 'application/json' };
+    headersParams["Access-Control-Allow-Origin"] = "*";
 
-	//	if (localStorage['token']) {
-		//	headersParams['Authorization'] = localStorage['token'];
+  //	if (localStorage['token']) {
+    //	headersParams['Authorization'] = localStorage['token'];
   //}
-		let headers = new Headers(headersParams);
-    	let options = new RequestOptions({ headers: headers });
-    	return options;
+    let headers = new Headers(headersParams);
+      let options = new RequestOptions({ headers: headers });
+      return options;
     }
   getListaUsuarios(): Observable<Usuario[]>{
     return this.http.get(this.url)
@@ -49,7 +49,7 @@ export class UsuariosService {
   }
   getUsuarioUrl(id):Observable<Usuario>{
     let url = this.url+"/"+id;
-    return this.http.get(url)        
+    return this.http.get(url)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error));
   }
@@ -58,7 +58,7 @@ export class UsuariosService {
      let url = this.url+"/"+usuario.id
     return this.http.delete(url)
     .map((res:Response)=>{})
-      .catch((error:any)=>Observable.throw(error)); 
+      .catch((error:any)=>Observable.throw(error));
   }
 
   atualizarUsuario(id:number, usuario:Usuario):Observable<Usuario>{
@@ -67,7 +67,7 @@ export class UsuariosService {
     console.log(bodyString);
     let headers = new Headers({'Content-Type':'application/json'})
     let options = new RequestOptions({headers:headers});
-    return this.http.put(url, 
+    return this.http.put(url,
         bodyString, options)
         .map((res:Response)=>{})
         .catch((error:any)=>Observable.throw(error));

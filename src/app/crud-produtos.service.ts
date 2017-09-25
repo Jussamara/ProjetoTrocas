@@ -14,7 +14,7 @@ import { Response, Headers } from '@angular/http';
 export class CrudProdutosService {
   extractData: any;
 
-   private url = "http://localhost:8080/ProjetoTrocas/webresources/produtos";
+   private url = "http://localhost:8080/api/moveis";
 
    produto: Produto[]=[];
 
@@ -48,7 +48,7 @@ export class CrudProdutosService {
   }
     getProdutoUrl(id):Observable<Produto>{
         let url = this.url + "/" + id;
-        return this.http.get(url)        
+        return this.http.get(url)
           .map((res:Response)=>res.json())
           .catch((error:any)=>Observable.throw(error));
   }
@@ -64,7 +64,7 @@ export class CrudProdutosService {
         console.log(bodyString);
         let headers = new Headers({'Content-Type':'application/json'})
         let options = new RequestOptions({headers:headers});
-    return this.http.put(url, 
+    return this.http.put(url,
     bodyString, options)
     .map((res:Response)=>{})
     .catch((error:any)=>Observable.throw(error));

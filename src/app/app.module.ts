@@ -3,6 +3,7 @@ import { NgModule, enableProdMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { CrudProdutosService} from "app/crud-produtos.service";
+import { TrocasService } from "app/trocas.service";
 import { Observable } from 'rxjs/Rx';
 
 
@@ -22,8 +23,6 @@ import { TrocasComponent } from './trocas/trocas.component';
 import { AnuncioComponent } from './anuncio/anuncio.component';
 
 
-
-
 enableProdMode();
 const routes: Routes = [
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
@@ -36,7 +35,7 @@ const routes: Routes = [
   { path: 'usuarionovo', component: UsuarioFormComponent },
   { path: 'refazer/:id', component: UsuarioFormComponent },
   { path: 'trocas', component: TrocasComponent },
-  { path: 'anuncio', component: AnuncioComponent}
+  { path: 'anuncio/:id', component: AnuncioComponent}
 ];
 @NgModule({
   declarations: [
@@ -57,7 +56,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
 
   ],
-  providers: [CrudProdutosService, UsuariosService, AuthService, AuthGuardService],
+  providers: [CrudProdutosService, UsuariosService, AuthService, AuthGuardService, TrocasService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
