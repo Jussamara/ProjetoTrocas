@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudProdutosService} from "app/crud-produtos.service";
-import { Produto, Endereco } from "app/produto";
+import { Produto } from "app/produto";
 import { Router, ActivatedRoute } from "@angular/router";
-
 @Component({
   selector: 'app-form-produtos',
   templateUrl: './form-produtos.component.html',
@@ -22,16 +21,9 @@ export class FormProdutosComponent implements OnInit {
   ngOnInit() {
     this._id = this.rota.snapshot.params['cod'];
 
-    if (!this._id) {
-        this.produto = new Produto();
-        this.produto.endereco = new Endereco();
-    }
-    else {
+    if (this._id) {
       this.servico.getProdutoUrl(this._id).subscribe(
-        data => {
-          console.log('produto carregado', data);
-          this.produto = data;
-        },
+        data => this.produto = data,
         error => this.msgErro = error)
     }
   }

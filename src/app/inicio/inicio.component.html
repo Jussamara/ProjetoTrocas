@@ -33,12 +33,12 @@
       <div class="card-content white-text">
         <span class="card-title">{{produto.nome}}</span>
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" [src]="produto.img" />
+          <img class="activator" [src]="produto.image" />
         </div>
         <p>{{produto.descricao}}</p>
       </div>
       <div class="card-action">
-        <a [routerLink]="['/anuncio', produto.id]">Solicitar</a>
+        <a [routerLink]="['/anuncio', produto._id]">Detalhes</a>
       </div>
     </div>
   </div>

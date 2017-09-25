@@ -22,7 +22,6 @@ export class CrudProdutosService {
 
   headers():RequestOptions {
 		let headersParams = { 'Content-Type': 'application/json' };
-
     headersParams["Access-Control-Allow-Origin"] = "*";
 
 		//if (localStorage['token']) {
