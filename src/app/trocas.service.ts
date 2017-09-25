@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Produto} from "app/produto";
+import { Produto } from "app/produto";
 
 import { Http, RequestOptions } from "@angular/http";
 
@@ -30,9 +30,17 @@ export class TrocasService {
     return options;
 	}
 
-  trocarProduto(id:number, produto:Produto):Observable<Produto>{
-    let url = `${this.url}/${id}`;
-    let bodyString = JSON.stringify(produto);
+  trocarProduto(solicitanteId:string, produto:Produto):Observable<Produto>{
+    let url = `${this.url}/solicita`;
+
+    const solicitarTroca = {
+      solicitante: solicitanteId,
+      movel: produto._id,
+      status: true, // 0 Pendente -  1 Done
+      data: new Date()
+    };
+
+    let bodyString = JSON.stringify(solicitarTroca);
     let options = this.headers()
 
     return this.http.post(url, bodyString, options)
