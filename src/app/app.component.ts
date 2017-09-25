@@ -10,7 +10,7 @@ import { AuthService } from "app/login-form/auth.service";
 export class AppComponent {
   title = 'Troca Móveis';
 
-  mostrarMenu: boolean = true;
+  mostrarMenu: boolean = false;
   constructor(private authServie: AuthService){
 
   }
