@@ -2,14 +2,14 @@
 <h3>{{titulo}}</h3>
 
 
-<form *ngIf='usuario'>
-  nome:<input type="text" name="name" [(ngModel)]="usuario.name"><br />
-  cpf:<input type="text" name="cpf" [(ngModel)]="usuario.cpf"><br />
-  senha:<input type="password" name="senha" [(ngModel)]="usuario.senha"><br />
-  email:<input type="text" name="email" [(ngModel)]="usuario.email"><br />
-  telefone:<input type="text" name="telefone" [(ngModel)]="usuario.telefone"><br /><br />
+<form name="usuarioForm" *ngIf='usuario'>
+  Nome:<input type="text" name="name" [(ngModel)]="usuario.name" required><br />
+  Cpf:<input type="text" name="cpf" [(ngModel)]="usuario.cpf" required><br />
+  Senha:<input type="password" name="senha" [(ngModel)]="usuario.senha" required><br />
+  E-mail:<input type="text" name="email" [(ngModel)]="usuario.email"><br />
+  Telefone:<input type="text" name="telefone" [(ngModel)]="usuario.telefone"><br /><br />
 
-  <input type="Button" (click)= "salvarUsuario()" value = "Cadastrar" ><br /><br />
+  <input type="submit" (click)= "salvarUsuario()" value = "Cadastrar" ><br /><br />
   <input type="button" (click) = "voltar()" value="Cancelar">
 </form>
 {{usuario.nome}}

@@ -38,7 +38,7 @@ export class UsuarioFormComponent implements OnInit {
   salvarUsuario(){
     if(!this.id){
       this.servico.adicionaUsuario(this.usuario).subscribe(
-        usuario => this.router.navigate(['/usuariolista']),
+        usuario => this.router.navigate(['/usuario/lista']),
         error => this.erro = error
         );
       alert("Usuario "+this.usuario.name+" adicionado com sucesso!");
@@ -46,16 +46,16 @@ export class UsuarioFormComponent implements OnInit {
    }
    else{
       this.servico.atualizarUsuario(this.id, this.usuario).subscribe(
-        data => this.router.navigate(['/usuariolista']));
+        data => this.router.navigate(['/usuario/lista']));
         error => this.erro = error
 
       alert("Usuario "+this.usuario.name+" editado com sucesso!");
     }
 
-    //this.router.navigate(['/usuariolista']);
+    //this.router.navigate(['/usuario/lista']);
   }
 
     voltar(){
-       this.router.navigate(['/usuariolista']);
+       this.router.navigate(['/usuario/lista']);
   }
 }
