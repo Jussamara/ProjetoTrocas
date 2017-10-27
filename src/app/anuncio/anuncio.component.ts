@@ -16,6 +16,7 @@ export class AnuncioComponent implements OnInit {
   msgErro: string;
   id: number;
   codigo: number;
+  usuarioLogado: boolean = false;
 
   constructor(private servico: TrocasService,
               private produtoServico: CrudProdutosService,
@@ -24,8 +25,8 @@ export class AnuncioComponent implements OnInit {
 
   ngOnInit() {
     this.codigo = this.rota.snapshot.params['id'];
+    this.usuarioLogado = this.authService.usuarioEstaAutenticado();
     this.buscaProduto();
-
   }
   buscaProduto(){
     this.produtoServico.getProdutoUrl(this.codigo).subscribe(

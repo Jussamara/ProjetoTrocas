@@ -11,7 +11,7 @@
             <hr>
             <p>{{produto.endereco.cidade}} - {{produto.endereco.estado}}</p>
           </div>
-          <div class="card-action">
+          <div *ngIf="usuarioLogado" class="card-action">
             <a (click)="solicitarTroca()">Solicitar</a>
             <!-- <a (click)="cancelarTroca()">Cancelar</a> -->
           </div>
