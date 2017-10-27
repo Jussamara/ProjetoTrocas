@@ -31,8 +31,8 @@ const routes: Routes = [
   { path: 'novo', component: FormProdutosComponent },
   { path: 'inicio', component: InicioComponent },
   { path: 'login', component: LoginFormComponent  },
-  { path: 'usuariolista', component: UsuarioTabelaComponent },
-  { path: 'usuarionovo', component: UsuarioFormComponent },
+  { path: 'usuario/lista', component: UsuarioTabelaComponent },
+  { path: 'usuario/novo', component: UsuarioFormComponent },
   { path: 'refazer/:id', component: UsuarioFormComponent },
   { path: 'trocas', component: TrocasComponent },
   { path: 'anuncio/:id', component: AnuncioComponent}
