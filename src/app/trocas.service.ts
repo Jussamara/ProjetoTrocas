@@ -21,8 +21,12 @@ export class TrocasService {
   constructor(private http: Http) { }
 
   headers():RequestOptions {
+    const usuario = localStorage.getItem('user');
+    const { token } = JSON.parse(usuario);
+
 		let headersParams = { 'Content-Type': 'application/json' };
     headersParams["Access-Control-Allow-Origin"] = "*";
+    headersParams['Authorization'] = token;
 
 		let headers = new Headers(headersParams);
     let options = new RequestOptions({ headers: headers });
@@ -48,8 +52,8 @@ export class TrocasService {
       .catch((error:any)=>Observable.throw(error));
   }
 
-  cancelarTroca(id:string, produto:Produto):Observable<Produto>{
-    let url = `${this.url}/cancelar/${id}`;
+  cancelarTroca(produto:Produto):Observable<Produto>{
+    let url = `${this.url}/cancelar`;
     let bodyString = JSON.stringify(produto);
     let options = this.headers()
 
@@ -60,8 +64,9 @@ export class TrocasService {
 
   removerTroca(id: string):Observable<Boolean>{
     let url = `${this.url}/${id}`;
+    let options = this.headers()
 
-    return this.http.delete(url)
+    return this.http.delete(url, options)
       .map((res:Response)=> { return true })
       .catch((error:any)=>Observable.throw(error));
   }

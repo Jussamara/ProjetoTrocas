@@ -57,7 +57,7 @@ export class AnuncioComponent implements OnInit {
   }
 
   cancelarTroca() {
-    this.servico.cancelarTroca(this.codigo, this.produto).subscribe(
+    this.servico.cancelarTroca(this.produto).subscribe(
       data => alert('cancelamento efetuada'),
       error => alert('erro na troca')
     )

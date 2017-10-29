@@ -56,7 +56,6 @@ export class AuthService {
   }
 
   idDoUsuarioLogado () {
-    debugger;
     return this.usuario._id.toString();
   }
 }
