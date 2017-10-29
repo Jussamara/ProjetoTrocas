@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from "app/usuario";
+import { Produto } from "app/produto";
 import { Observable } from 'rxjs/Rx';
 import { Response } from '@angular/http';
 import { HttpService } from './http.service'
@@ -51,5 +52,11 @@ export class UsuariosService {
     return this.http.put(url, bodyString)
       .map((res: Response) => {})
       .catch((error: any) => Observable.throw(error));
+  }
+
+  getProdutosDoUsuario(): Observable<Produto[]>{
+    return this.http.get(this.url + "moveis")
+      .map((res:Response) => res.json())
+      .catch((error:any)=>Observable.throw(error));
   }
 }

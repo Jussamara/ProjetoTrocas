@@ -58,13 +58,14 @@ const routes: Routes = [
 
   ],
   providers: [
-    {
-      provide: HttpService,
-      useFactory: (backend: XHRBackend, options: RequestOptions) => {
-        return new HttpService(backend, options);
-      },
-      deps: [XHRBackend, RequestOptions]
-    },
+    HttpService,
+    // {
+    //   provide: HttpService,
+    //   useFactory: (backend: XHRBackend, options: RequestOptions) => {
+    //     return new HttpService(backend, options);
+    //   },
+    //   deps: [XHRBackend, RequestOptions]
+    // },
     CrudProdutosService,
     UsuariosService,
     AuthService,

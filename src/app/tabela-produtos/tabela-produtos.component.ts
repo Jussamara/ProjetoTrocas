@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudProdutosService} from "app/crud-produtos.service";
+import { UsuariosService } from "app/usuarios.service";
 import { Produto} from "app/produto";
 import { ActivatedRoute } from "@angular/router";
 import { error } from "util";
@@ -18,13 +19,14 @@ export class TabelaProdutosComponent implements OnInit {
 	id: number;
 
   constructor(private servico: CrudProdutosService,
+              private usuarioService: UsuariosService,
               private rota: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarProdutos();
   }
   carregarProdutos() {
-    this.servico.getProdutos().subscribe(
+    this.usuarioService.getProdutosDoUsuario().subscribe(
       data => this.produtos = data,
       error => this.msgErro = error
     );
@@ -35,5 +37,4 @@ export class TabelaProdutosComponent implements OnInit {
       error => this.msgErro = error
     );
   }
-
 }
