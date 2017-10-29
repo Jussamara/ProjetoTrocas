@@ -8,17 +8,15 @@ import 'rxjs/add/operator/catch';
 export class HttpService extends Http {
 
   constructor (backend: XHRBackend, options: RequestOptions) {
-    let token = localStorage.getItem('auth_token'); // your custom token getter function here
-    options.headers.set('Authorization', `Bearer ${token}`);
+    options.headers.set('Content-Type', `application/json`);
     super(backend, options);
   }
 
   request(url: string|Request, options?: RequestOptionsArgs): Observable<Response> {
     const usuario = localStorage.getItem('user');
-    let token;
 
     if (usuario) {
-      token = JSON.parse(usuario).token;
+      const token = JSON.parse(usuario).token;
 
       if (typeof url === 'string') {
         if (!options) {
