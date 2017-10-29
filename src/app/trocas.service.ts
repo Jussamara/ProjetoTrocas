@@ -48,13 +48,21 @@ export class TrocasService {
       .catch((error:any)=>Observable.throw(error));
   }
 
-  cancelarTroca(id:number, produto:Produto):Observable<Produto>{
+  cancelarTroca(id:string, produto:Produto):Observable<Produto>{
     let url = `${this.url}/cancelar/${id}`;
     let bodyString = JSON.stringify(produto);
     let options = this.headers()
 
     return this.http.post(url, bodyString, options)
       .map((res:Response)=>{})
+      .catch((error:any)=>Observable.throw(error));
+  }
+
+  removerTroca(id: string):Observable<Boolean>{
+    let url = `${this.url}/${id}`;
+
+    return this.http.delete(url)
+      .map((res:Response)=> { return true })
       .catch((error:any)=>Observable.throw(error));
   }
 }

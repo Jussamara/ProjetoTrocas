@@ -11,9 +11,12 @@
             <hr>
             <p>{{produto.endereco.cidade}} - {{produto.endereco.estado}}</p>
           </div>
-          <div *ngIf="usuarioLogado" class="card-action">
+          <div *ngIf="usuarioLogado && produto.dono !== usuarioId" class="card-action">
             <a (click)="solicitarTroca()">Solicitar</a>
             <!-- <a (click)="cancelarTroca()">Cancelar</a> -->
+          </div>
+          <div *ngIf="usuarioLogado && produto.dono === usuarioId" class="card-action">
+            <a (click)="removerTroca()">Remover produto</a>
           </div>
         </div>
     </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudProdutosService} from "app/crud-produtos.service";
 import { Produto } from "app/produto";
+import { AuthService } from "app/login-form/auth.service";
 import { Router, ActivatedRoute } from "@angular/router";
 @Component({
   selector: 'app-form-produtos',
@@ -15,8 +16,9 @@ export class FormProdutosComponent implements OnInit {
   msgErro: string;
 
   constructor(private servico: CrudProdutosService,
-  private router: Router,
-  private rota: ActivatedRoute ) { }
+              private authService: AuthService,
+              private router: Router,
+              private rota: ActivatedRoute ) { }
 
   ngOnInit() {
     this._id = this.rota.snapshot.params['cod'];
@@ -29,6 +31,8 @@ export class FormProdutosComponent implements OnInit {
   }
   salvarProduto() {
     if (!this._id) {
+      this.produto.dono = this.authService.idDoUsuarioLogado();
+
       this.servico.adiciconarProduto(this.produto).subscribe(
         produto => this.router.navigate(['/lista']),
         error => this.msgErro = error
