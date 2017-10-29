@@ -19,6 +19,7 @@ export class AnuncioComponent implements OnInit {
   codigo: string;
   usuarioLogado: boolean = false;
   usuarioId: string = ''
+  trocaSolicitada: boolean = false;
 
   constructor(private servico: TrocasService,
               private produtoServico: CrudProdutosService,
@@ -38,7 +39,10 @@ export class AnuncioComponent implements OnInit {
   }
   buscaProduto(){
     this.produtoServico.getProdutoUrl(this.codigo).subscribe(
-      data => { this.produto = data; console.log(data) },
+      data => {
+        this.trocaSolicitada = data.trocaSolicitada;
+        this.produto = data; console.log(data)
+      },
       error => this.msgErro = error
     );
   }

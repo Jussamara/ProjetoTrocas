@@ -12,8 +12,8 @@
             <p>{{produto.endereco.cidade}} - {{produto.endereco.estado}}</p>
           </div>
           <div *ngIf="usuarioLogado && produto.dono !== usuarioId" class="card-action">
-            <a (click)="solicitarTroca()">Solicitar</a>
-            <!-- <a (click)="cancelarTroca()">Cancelar</a> -->
+            <a *ngIf="!trocaSolicitada" (click)="solicitarTroca()">Solicitar</a>
+            <a *ngIf="trocaSolicitada" (click)="cancelarTroca()">Cancelar</a>
           </div>
           <div *ngIf="usuarioLogado && produto.dono === usuarioId" class="card-action">
             <a (click)="removerTroca()">Remover produto</a>

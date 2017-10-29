@@ -20,44 +20,50 @@ export class CrudProdutosService {
 
   constructor(private http: Http) { }
 
-  headers():RequestOptions {
+  headers(): RequestOptions {
 		let headersParams = { 'Content-Type': 'application/json' };
     headersParams["Access-Control-Allow-Origin"] = "*";
 
-		//if (localStorage['token']) {
-		//	headersParams['Authorization'] = localStorage['token'];
- // }
+    const usuario = localStorage.getItem('user');
+
+    if (usuario) {
+      const { token } = JSON.parse(usuario);
+      headersParams['Authorization'] = token;
+    }
+
 		let headers = new Headers(headersParams);
     let options = new RequestOptions({ headers: headers });
 
     return options;
 	}
   getProdutos(): Observable<Produto[]>{
-    return this.http.get(this.url)
-    .map((res:Response) => res.json())
-    .catch((error:any)=>Observable.throw(error));
+    let headers = this.headers();
+
+    return this.http.get(this.url, headers)
+      .map((res:Response) => res.json())
+      .catch((error:any)=>Observable.throw(error));
   }
 
   adiciconarProduto(produto):Observable<Produto>{
     let bodyString = JSON.stringify(produto);
-    let headers = new Headers({'Content-Type':'application/json'})
-    let options = new RequestOptions({headers:headers});
+    let headers = this.headers();
 
-    return this.http.post(this.url, bodyString, options)
+    return this.http.post(this.url, bodyString, headers)
       .map((res:Response)=>{})
       .catch((error:any)=>Observable.throw(error));
   }
 
   getProdutoUrl(id):Observable<Produto>{
     let url = this.url + "/" + id;
+    let headers = this.headers()
 
-    return this.http.get(url)
+    return this.http.get(url, headers)
       .map((res:Response)=>res.json())
       .catch((error:any)=>Observable.throw(error));
   }
 
   removerProduto(produto:Produto): Observable<Produto[]>{
-    let url = this.url+"/"+produto._id
+    let url = this.url+"/"+produto._id;
 
     return this.http.delete(url)
       .map((res:Response)=>{})

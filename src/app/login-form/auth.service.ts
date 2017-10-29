@@ -39,7 +39,8 @@ export class AuthService {
     return this.http.post(this.url, bodyString, options)
       .map((res:Response)=>{
         this.usuarioAutenticado = true;
-        this.usuario = res.json().pop();
+        this.usuario = res.json();
+        localStorage.setItem('user', JSON.stringify(this.usuario));
         this.mostrarMenuEmitter.emit(true);
         this.router.navigate(['/']);
       })
