@@ -1,13 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, enableProdMode } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { HttpModule, RequestOptions, XHRBackend } from '@angular/http';
 import { CrudProdutosService} from "app/crud-produtos.service";
 import { TrocasService } from "app/trocas.service";
 import { Observable } from 'rxjs/Rx';
 
 
 import { AppComponent } from './app.component';
+import { HttpService } from './http.service'
 import { TabelaProdutosComponent } from './tabela-produtos/tabela-produtos.component';
 import { FormProdutosComponent } from './form-produtos/form-produtos.component';
 import { RouterModule, Routes} from '@angular/router';
@@ -56,7 +57,20 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
 
   ],
-  providers: [CrudProdutosService, UsuariosService, AuthService, AuthGuardService, TrocasService],
+  providers: [
+    {
+      provide: HttpService,
+      useFactory: (backend: XHRBackend, options: RequestOptions) => {
+        return new HttpService(backend, options);
+      },
+      deps: [XHRBackend, RequestOptions]
+    },
+    CrudProdutosService,
+    UsuariosService,
+    AuthService,
+    AuthGuardService,
+    TrocasService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

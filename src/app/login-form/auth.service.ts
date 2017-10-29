@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Usuario } from "app/usuario";
 import { Router } from "@angular/router";
-import { Http, RequestOptions, Response, Headers } from "@angular/http";
+import { HttpService } from './../http.service'
+import { Response } from "@angular/http";
 import { EventEmitter } from "@angular/common/src/facade/async";
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
@@ -16,16 +17,7 @@ export class AuthService {
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private http: Http) { }
-
-  headers(): RequestOptions {
-    let headersParams = { 'Content-Type': 'application/json' };
-    headersParams["Access-Control-Allow-Origin"] = "*";
-    let headers = new Headers(headersParams);
-    let options = new RequestOptions({ headers: headers });
-
-    return options;
-  }
+  constructor(private router: Router, private http: HttpService) { }
 
   fazerLogin(usuario:Usuario){
     const {
@@ -34,9 +26,8 @@ export class AuthService {
     } = usuario;
 
     const bodyString = JSON.stringify({ email, senha });
-    const options = this.headers()
 
-    return this.http.post(this.url, bodyString, options)
+    return this.http.post(this.url, bodyString)
       .map((res:Response)=>{
         this.usuarioAutenticado = true;
         this.usuario = res.json();
