@@ -15,6 +15,8 @@ import {
   Router,
   ActivatedRoute
 } from "@angular/router";
+declare var Materialize:any;
+
 @Component({
   selector: 'app-form-produtos',
   templateUrl: './form-produtos.component.html',
@@ -35,9 +37,14 @@ export class FormProdutosComponent implements OnInit {
   ngOnInit() {
     this._id = this.rota.snapshot.params['cod'];
 
+    setTimeout(() => { Materialize.updateTextFields(); }, 100);
+
     if (this._id) {
       this.servico.getProdutoUrl(this._id).subscribe(
-        data => this.produto = data,
+        data => {
+          this.produto = data;
+          // setTimeout(() => { Materialize.updateTextFields(); }, 100);
+        },
         error => this.msgErro = error)
     }
   }

@@ -9,6 +9,7 @@
                 <li *ngIf="mostrarMenu" routerLinkActive="active"><a routerLink="/novo">Cadastrar Móvel</a></li>
                 <li *ngIf="mostrarMenu"routerLinkActive="active"><a routerLink="/lista">Lista de Móveis</a></li>
                 <li *ngIf="mostrarMenu && isAdmin" routerLinkActive="active"><a routerLink="/usuario/lista">Lista de Usuários</a></li>
+                <li *ngIf="mostrarMenu" routerLinkActive="active"><a [routerLink]="['/usuario', usuarioId, 'editar']">Meu perfil</a></li>
                 <li *ngIf="mostrarMenu" routerLinkActive="active"><a (click)="deslogarUsuario()">Logout</a></li>
                 <li *ngIf="!mostrarMenu" routerLinkActive="active"><a routerLink="/login">Entrar</a></li>
             </ul>

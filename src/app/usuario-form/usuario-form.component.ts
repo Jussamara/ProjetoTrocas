@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Usuario } from "app/usuario";
 import { UsuariosService } from "app/usuarios.service";
 import { Router, ActivatedRoute} from '@angular/router';
-
+declare var Materialize:any;
 @Component({
   selector: 'app-usuario-form',
   templateUrl: './usuario-form.component.html',
@@ -27,7 +27,10 @@ export class UsuarioFormComponent implements OnInit {
     }
     else{
       this.servico.getUsuarioUrl(this.id).subscribe(
-        data => this.usuario = data,
+        data => {
+          this.usuario = data;
+          setTimeout(() => { Materialize.updateTextFields(); }, 100);
+        },
         error => {
           if (error.status === 401) {
             this.router.navigate(['/']);

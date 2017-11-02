@@ -11,22 +11,24 @@ export class AppComponent {
   title = 'Troca Móveis';
   mostrarMenu: boolean = false;
   isAdmin: boolean = false;
+  usuarioId: string = '';
 
   constructor(private authService: AuthService) {
     const autenticado = this.authService.usuarioEstaAutenticado();
 
     if (autenticado) {
       this.mostrarMenu = autenticado;
-      this.isAdmin = this.authService.isAdmin();
       this.authService.restaurarSessaoUsuario();
+      this.isAdmin = this.authService.isAdmin();
+      this.usuarioId = this.authService.idDoUsuarioLogado();
     }
   }
 
   ngOnInit() {
     this.authService.mostrarMenuEmitter.subscribe(
       mostrar => {
-        debugger;
         this.mostrarMenu = mostrar;
+        this.usuarioId = this.authService.idDoUsuarioLogado();
         this.isAdmin = this.authService.isAdmin();
       }
     );
