@@ -59,4 +59,14 @@ export class UsuariosService {
       .map((res:Response) => res.json())
       .catch((error:any)=>Observable.throw(error));
   }
+
+  recuperarSenha(email): Observable<Boolean> {
+    debugger;
+    const body = { email };
+    const bodyString = JSON.stringify(body);
+
+    return this.http.post(this.url + "recuperar-senha", bodyString)
+      .map((res:Response) => true)
+      .catch((error:any)=> Observable.throw(error));
+  }
 }
