@@ -37,6 +37,12 @@ export class UsuariosService {
       .catch((error: any) => Observable.throw(error));
   }
 
+  perfilUsuario(id): Observable < Usuario > {
+    return this.http.get(`${this.url}perfil/${id}`)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error));
+  }
+
   excluirUsuario(usuario: Usuario): Observable < Usuario[] > {
     let url = this.url + usuario._id
 

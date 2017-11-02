@@ -28,7 +28,11 @@ export class UsuarioFormComponent implements OnInit {
     else{
       this.servico.getUsuarioUrl(this.id).subscribe(
         data => this.usuario = data,
-        error => this.erro = error
+        error => {
+          if (error.status === 401) {
+            this.router.navigate(['/']);
+          }
+        }
       )
     }
   }

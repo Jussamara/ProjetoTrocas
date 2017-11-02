@@ -48,6 +48,15 @@ export class AuthService {
     return true;
   }
 
+  isAdmin() {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      return false;
+    }
+
+    return JSON.parse(user).admin;
+  }
+
   idDoUsuarioLogado () {
     return this.usuario._id.toString();
   }

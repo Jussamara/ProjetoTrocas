@@ -12,8 +12,8 @@
     <td>{{usuario.name}}</td>
     <td>{{usuario.email}}</td>
     <td>{{usuario.telefone}}</td>
-    <td><a [routerLink]="['/refazer', usuario._id]">Editar</a></td>
-    <td><a routerLink="/usuario/lista" (click)= "excluirUsuario(usuario)">Remover</a></td>
+    <td><a [routerLink]="['/usuario', usuario._id, 'editar']">Editar</a></td>
+    <td><a [routerLink]="['/usuario/lista']" (click)= "excluirUsuario(usuario)">Remover</a></td>
   </tr>
   <a routerLink="/usuario/novo"> NOVO USUARIO </a>
 </table>

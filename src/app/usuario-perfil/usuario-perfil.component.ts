@@ -24,9 +24,8 @@ export class UsuarioPerfilComponent implements OnInit {
   ngOnInit() {
     this.id = this.rota.snapshot.params['id'];
 
-    this.usuarioService.getUsuarioUrl(this.id).subscribe(
+    this.usuarioService.perfilUsuario(this.id).subscribe(
       data => {
-        console.log(data);
         this.usuario = data;
         this.carregarProdutos();
       },

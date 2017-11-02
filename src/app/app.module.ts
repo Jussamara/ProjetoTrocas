@@ -40,6 +40,7 @@ const routes: Routes = [
   { path: 'usuario/recuperar-senha', component: RecuperarSenhaFormComponent },
   { path: 'usuario/alterar-senha', component: AlterarSenhaComponent },
   { path: 'usuario/:id', component: UsuarioPerfilComponent, canActivate: [ AuthGuardService ] },
+  { path: 'usuario/:id/editar', component: UsuarioFormComponent, canActivate: [ AuthGuardService ] },
   { path: 'trocas', component: TrocasComponent, canActivate: [ AuthGuardService ] },
   { path: 'anuncio/:id', component: AnuncioComponent },
   { path: "*", redirectTo: 'inicio' }
