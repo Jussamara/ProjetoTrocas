@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Troca } from './../troca'
+import { TrocasService } from './../trocas.service'
+import { AuthService } from './../login-form/auth.service'
+
 
 @Component({
   selector: 'app-trocas',
@@ -6,12 +10,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./trocas.component.css']
 })
 export class TrocasComponent implements OnInit {
-   urlImagem = "https://http2.mlstatic.com/D_Q_NP_393825-MLB25504499706_042017-H.webp";
-    Image = "https://http2.mlstatic.com/D_Q_NP_888125-MLB25393471659_022017-H.webp";
+  solicitadas: Troca[] = [];
+  recebidas: Troca[] = [];
 
-  constructor() { }
+  constructor(private trocasService: TrocasService,
+              private authService: AuthService) { }
 
   ngOnInit() {
-  }
+    const usuarioId = this.authService.idDoUsuarioLogado();
 
+    this.trocasService.solicitadas(usuarioId).subscribe(
+      data => this.solicitadas = data,
+      error => console.error(error)
+    );
+
+    this.trocasService.recebidas(usuarioId).subscribe(
+      data => this.recebidas = data,
+      error => console.error(error)
+    );
+  }
 }

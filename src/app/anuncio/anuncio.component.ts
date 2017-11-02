@@ -38,8 +38,8 @@ export class AnuncioComponent implements OnInit {
   buscaProduto(){
     this.produtoServico.getProdutoUrl(this.codigo).subscribe(
       data => {
-        this.trocaSolicitada = data.trocaSolicitada;
-        this.produto = data; console.log(data)
+        this.trocaSolicitada = data['trocaSolicitada'];
+        this.produto = data;
       },
       error => this.msgErro = error
     );
@@ -49,14 +49,20 @@ export class AnuncioComponent implements OnInit {
     const solicitanteid = this.authService.idDoUsuarioLogado();
 
     this.servico.trocarProduto(solicitanteid, this.produto).subscribe(
-      data => alert('solicitacao efetuada'),
+      data => {
+        alert('solicitacao efetuada');
+        this.router.navigate(['/trocas'])
+      },
       error => alert('erro na troca')
     )
   }
 
   cancelarTroca() {
     this.servico.cancelarTroca(this.produto).subscribe(
-      data => alert('cancelamento efetuada'),
+      data => {
+        alert('cancelamento efetuada');
+        this.router.navigate(['/'])
+      },
       error => alert('erro na troca')
     )
   }

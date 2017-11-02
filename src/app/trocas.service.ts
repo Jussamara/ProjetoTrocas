@@ -3,6 +3,7 @@ import { Produto } from "app/produto";
 import { HttpService } from './http.service'
 import { Observable } from 'rxjs/Rx';
 import { Response } from '@angular/http';
+import { Troca } from './troca';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
@@ -49,5 +50,21 @@ export class TrocasService {
     return this.http.delete(url)
       .map((res:Response)=> { return true })
       .catch((error:any)=>Observable.throw(error));
+  }
+
+  solicitadas(usuarioId: string): Observable<Troca[]> {
+    let url = `${this.url}/solicitadas/${usuarioId}`;
+
+    return this.http.get(url)
+      .map((res:Response) => res.json())
+      .catch((error:any )=> Observable.throw(error));
+  }
+
+  recebidas(usuarioId: string): Observable<Troca[]> {
+    let url = `${this.url}/recebidas/${usuarioId}`;
+
+    return this.http.get(url)
+      .map((res:Response) => res.json())
+      .catch((error:any )=> Observable.throw(error));
   }
 }

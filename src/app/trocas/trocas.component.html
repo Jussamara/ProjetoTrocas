@@ -1,27 +1,37 @@
 <div class="container">
-  <h3>{{titulo}}</h3>
+  <h3>Trocas enviadas pendentes</h3>
   <table>
     <tr>
-      <th>Nome do Movel</th>
-      <th>Descrição</th>
-      <th>Estado</th>
-      <th>Cidade</th>
-      <th>Imagem</th>
-      <th>Editar</th>
-      <th>Remover</th>
+      <th>Data da solicitação</th>
+      <th>Móvel</th>
     </tr>
-    <tr *ngFor="let produto of produtos; let cod = produto">
-      <td>{{produto.nome}}</td>
-      <td>{{produto.descricao}}</td>
-      <td>{{produto.endereco.estado}}</td>
-      <td>{{produto.endereco.cidade}}</td>
+    <tr *ngFor="let troca of solicitadas; let cod = troca">
+      <td>{{troca.data | date:'short'}}</td>
       <td>
-        <img class="activator" src={{urlImagem}}>
+        <a [routerLink]="['/anuncio/', troca.movel.id]">{{troca.movel.nome}}</a>
       </td>
-      <td><a [routerLink]="['/edicao', produto._id]">Editar</a></td>
-      <td><a routerLink="/lista" (click)= "remover(produto)">Remover</a></td>
     </tr>
   </table>
-
-  <h5><a routerLink="/novo">Cadastra mais uma troca</a></h5>
+  <br>
+  <br>
+  <hr>
+  <br>
+  <br>
+  <h3>Trocas recebidas pendentes</h3>
+  <table>
+      <tr>
+        <th>Data da solicitação</th>
+        <th>Móvel</th>
+        <th>Solicitante</th>
+      </tr>
+      <tr *ngFor="let troca of recebidas; let cod = troca">
+        <td>{{troca.data | date:'short'}}</td>
+        <td>
+          <a [routerLink]="['/anuncio/', troca.movel.id]">{{troca.movel.nome}}</a>
+        </td>
+        <td>
+          <a [routerLink]="['/usuario/', troca.solicitante.id]">{{troca.solicitante.nome}}</a>
+        </td>
+      </tr>
+    </table>
 </div>

@@ -12,7 +12,6 @@ export class Produto {
     image: any;
     status: boolean;
     dono: string;
-    trocaSolicitada: boolean;
 
     constructor(){
       this.endereco = new Endereco();
