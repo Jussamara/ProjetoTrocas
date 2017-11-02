@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CrudProdutosService} from "app/crud-produtos.service";
 import { UsuariosService } from "app/usuarios.service";
+import { AuthService } from "app/login-form/auth.service";
 import { Produto} from "app/produto";
 import { ActivatedRoute } from "@angular/router";
 import { error } from "util";
@@ -12,7 +13,7 @@ import { error } from "util";
 })
 export class TabelaProdutosComponent implements OnInit {
   produto: Produto;
-  titulo = 'Tabela de Trocas';
+  titulo = 'Tabela de Móveis';
 
   produtos:Produto[]=[];
   msgErro: string;
@@ -20,13 +21,15 @@ export class TabelaProdutosComponent implements OnInit {
 
   constructor(private servico: CrudProdutosService,
               private usuarioService: UsuariosService,
+              private authService: AuthService,
               private rota: ActivatedRoute) { }
 
   ngOnInit() {
     this.carregarProdutos();
   }
   carregarProdutos() {
-    this.usuarioService.getProdutosDoUsuario().subscribe(
+    const usuarioId = this.authService.idDoUsuarioLogado();
+    this.usuarioService.getProdutosDoUsuario(usuarioId).subscribe(
       data => this.produtos = data,
       error => this.msgErro = error
     );

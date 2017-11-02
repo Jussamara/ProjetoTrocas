@@ -10,6 +10,8 @@
             <p>{{produto.descricao}}</p>
             <hr>
             <p>{{produto.endereco.cidade}} - {{produto.endereco.estado}}</p>
+            <hr>
+            <p>Veja mais itens desse usuário: <a [routerLink]="['/usuario/', produto.dono]">aqui</a></p>
           </div>
           <div *ngIf="usuarioLogado && produto.dono !== usuarioId" class="card-action">
             <a *ngIf="!trocaSolicitada" (click)="solicitarTroca()">Solicitar</a>

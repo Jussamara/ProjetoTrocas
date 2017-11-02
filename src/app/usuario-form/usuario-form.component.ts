@@ -22,8 +22,6 @@ export class UsuarioFormComponent implements OnInit {
 
     this.id = this.rota.snapshot.params['id'];
 
-    console.log('ID ', this.id);
-
     if(!this.id){
       this.usuario = new Usuario();
     }
