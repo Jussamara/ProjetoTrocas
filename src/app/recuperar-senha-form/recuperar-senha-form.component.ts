@@ -11,7 +11,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 export class RecuperarSenhaFormComponent {
   titulo = "Recuperar senha";
-  private email: string = '';
+  email: string = '';
 
   constructor(private usuariosService: UsuariosService,
               private route: ActivatedRoute,

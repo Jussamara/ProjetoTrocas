@@ -32,7 +32,7 @@ export class HttpService extends Http {
     }
 
     const baseUrl = process.env.NODE_ENV === 'production' ?
-      'api-tccprojetotrocas.herokuapp.com/api' :
+      'http://api-tccprojetotrocas.herokuapp.com/api' :
       'http://localhost:8080/api';
 
     request.url = `${baseUrl}${request.url}`;

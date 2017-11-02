@@ -10,8 +10,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 export class LoginFormComponent implements OnInit {
   titulo = "Faça seu Login";
   returnUrl: string;
-
-  private usuario: Usuario = new Usuario();
+  usuario: Usuario = new Usuario();
 
   constructor(private authService: AuthService,
               private route: ActivatedRoute,

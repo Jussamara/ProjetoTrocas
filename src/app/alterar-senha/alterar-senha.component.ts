@@ -12,7 +12,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 export class AlterarSenhaComponent implements OnInit {
   titulo = "Alterar senha";
 
-  private tokenInvalido: Boolean = false;
+  tokenInvalido: Boolean = false;
   private token: string = '';
   private senha: string = '';
 
