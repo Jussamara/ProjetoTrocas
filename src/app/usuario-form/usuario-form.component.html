@@ -1,16 +1,37 @@
-<div class = "container">
-<h3>{{titulo}}</h3>
-
-
-<form name="usuarioForm" *ngIf='usuario'>
-  Nome:<input type="text" name="name" [(ngModel)]="usuario.name" required><br />
-  Cpf:<input type="text" name="cpf" [(ngModel)]="usuario.cpf" required><br />
-  Senha:<input type="password" name="senha" [(ngModel)]="usuario.senha" required><br />
-  E-mail:<input type="text" name="email" [(ngModel)]="usuario.email"><br />
-  Telefone:<input type="text" name="telefone" [(ngModel)]="usuario.telefone"><br /><br />
-
-  <input type="submit" (click)= "salvarUsuario()" value = "Cadastrar" ><br /><br />
-  <input type="button" (click) = "voltar()" value="Cancelar">
-</form>
-{{usuario.nome}}
+<div class="container">
+  <h3>{{titulo}}</h3>
+  <form class="form" name="usuarioForm" *ngIf='usuario'>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" name="name" [(ngModel)]="usuario.name" required />
+        <label for="name">Nome</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" name="cpf" [(ngModel)]="usuario.cpf" required />
+        <label for="cpf">CPF</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="password" name="senha" [(ngModel)]="usuario.senha" required />
+        <label for="senha">Senha</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="email" name="email" [(ngModel)]="usuario.email" />
+        <label for="email">E-mail</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input type="text" name="telefone" [(ngModel)]="usuario.telefone">
+        <label for="telefone">Telefone</label>
+      </div>
+    </div>
+    <input type="submit" class="btn" (click)= "salvarUsuario()" value = "Cadastrar" >
+    <input type="button" class="btn btn-flat" (click)="voltar()" value="Cancelar" />
+  </form>
 </div>
