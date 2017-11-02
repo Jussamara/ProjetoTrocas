@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 export class AuthService {
 
   private usuario: Usuario = new Usuario;
-  private url = "http://localhost:8080/api/login";
+  private url = "/login";
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 

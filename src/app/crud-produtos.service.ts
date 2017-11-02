@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 export class CrudProdutosService {
   extractData: any;
 
-  private url = "http://localhost:8080/api/moveis";
+  private url = "/moveis";
 
   produto: Produto[]=[];
 

@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch';
 export class TrocasService {
   extractData: any;
 
-   private url = "http://localhost:8080/api/troca";
+   private url = "/troca";
 
    produto: Produto[]=[];
 

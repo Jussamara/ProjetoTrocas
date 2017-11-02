@@ -1,24 +1,23 @@
 import {Injectable} from '@angular/core';
-import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers} from '@angular/http';
+import {Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers, BaseRequestOptions } from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 
 @Injectable()
 export class HttpService extends Http {
-
   constructor (backend: XHRBackend, options: RequestOptions) {
     options.headers.set('Content-Type', `application/json`);
     super(backend, options);
   }
 
-  request(url: string|Request, options?: RequestOptionsArgs): Observable<Response> {
+  request(request: Request, options?: RequestOptionsArgs): Observable<Response> {
     const usuario = localStorage.getItem('user');
 
     if (usuario) {
       const token = JSON.parse(usuario).token;
 
-      if (typeof url === 'string') {
+      if (typeof request === 'string') {
         if (!options) {
           // let's make option object
           options = {headers: new Headers()};
@@ -28,11 +27,17 @@ export class HttpService extends Http {
       } else {
       // we have to add the token to the url object
         // url.headers.set('Authorization', `Bearer ${token}`);
-        url.headers.set('Authorization', `${token}`);
+        request.headers.set('Authorization', `${token}`);
       }
     }
 
-    return super.request(url, options).catch(this.catchAuthError(this));
+    const baseUrl = process.env.NODE_ENV === 'production' ?
+      'api-tccprojetotrocas.herokuapp.com/api' :
+      'http://localhost:8080/api';
+
+    request.url = `${baseUrl}${request.url}`;
+
+    return super.request(request, options).catch(this.catchAuthError(this));
   }
 
   private catchAuthError (self: HttpService) {

@@ -11,7 +11,7 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class UsuariosService {
 
-  private url = "http://localhost:8080/api/users/";
+  private url = "/users/";
 
   usuarios: Usuario[] = [];
 
