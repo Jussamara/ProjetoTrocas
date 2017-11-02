@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   fazerLogin() {
     this.authService.fazerLogin(this.usuario).subscribe(
       data => this.router.navigate([this.returnUrl]),
-      error => {}
+      error => alert('Senha ou usuário inválidos!')
     )
   }
 }
