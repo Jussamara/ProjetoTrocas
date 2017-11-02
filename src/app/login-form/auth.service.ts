@@ -11,13 +11,12 @@ import 'rxjs/add/operator/catch';
 @Injectable()
 export class AuthService {
 
-  private usuarioAutenticado: boolean = false;
   private usuario: Usuario = new Usuario;
   private url = "http://localhost:8080/api/login";
 
   mostrarMenuEmitter = new EventEmitter<boolean>();
 
-  constructor(private router: Router, private http: HttpService) { }
+  constructor(private router: Router, private http: HttpService) {}
 
   fazerLogin(usuario:Usuario){
     const {
@@ -29,24 +28,37 @@ export class AuthService {
 
     return this.http.post(this.url, bodyString)
       .map((res:Response)=>{
-        this.usuarioAutenticado = true;
         this.usuario = res.json();
         localStorage.setItem('user', JSON.stringify(this.usuario));
         this.mostrarMenuEmitter.emit(true);
-        this.router.navigate(['/']);
       })
       .catch((error:any)=> {
-        this.usuarioAutenticado = false;
         this.mostrarMenuEmitter.emit(false);
         return Observable.throw(error);
       });
   }
 
   usuarioEstaAutenticado(){
-    return this.usuarioAutenticado;
+    const user = localStorage.getItem('user');
+
+    if (!user) {
+      return false;
+    }
+
+    return true;
   }
 
   idDoUsuarioLogado () {
     return this.usuario._id.toString();
+  }
+
+  restaurarSessaoUsuario() {
+    this.usuario = JSON.parse(localStorage.getItem('user'));
+  }
+
+  logout() {
+    localStorage.removeItem('user');
+    this.mostrarMenuEmitter.emit(false);
+    this.router.navigate(['/']);
   }
 }

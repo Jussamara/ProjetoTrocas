@@ -1,28 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-
 import { Usuario } from "app/usuario";
 import { AuthService } from "app/login-form/auth.service";
-
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.css']
 })
 export class LoginFormComponent implements OnInit {
- titulo = "Faça seu Login";
+  titulo = "Faça seu Login";
+  returnUrl: string;
 
- private usuario: Usuario = new Usuario();
+  private usuario: Usuario = new Usuario();
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,
+              private route: ActivatedRoute,
+              private router: Router) {}
 
-  ngOnInit() {
+  ngOnInit() {        
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
-  fazerLogin(){
+  fazerLogin() {
     this.authService.fazerLogin(this.usuario).subscribe(
-      data => {},
+      data => this.router.navigate([this.returnUrl]),
       error => {}
     )
   }
-
 }
