@@ -10,8 +10,7 @@
                 <li *ngIf="mostrarMenu"routerLinkActive="active"><a routerLink="/lista">Lista de Móveis</a></li>
                 <li *ngIf="mostrarMenu" routerLinkActive="active"><a routerLink="/usuario/lista">Lista de Usuários</a></li>
                 <li *ngIf="mostrarMenu" routerLinkActive="active"><a (click)="deslogarUsuario()">Logout</a></li>
-                <li *ngIf="!mostrarMenu"><a routerLink="/usuario/novo">Cadastrar-se</a></li>
-                <li *ngIf="!mostrarMenu" routerLinkActive="active"><a routerLink="/login">Login</a></li>
+                <li *ngIf="!mostrarMenu" routerLinkActive="active"><a routerLink="/login">Entrar</a></li>
             </ul>
             <ul class="side-nav" id="mobile-demo">
                 <li><a>Página Inicial</a></li>
