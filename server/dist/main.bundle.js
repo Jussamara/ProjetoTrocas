@@ -3,7 +3,7 @@ webpackJsonp([1,5],{
 /***/ 1144:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(544);
+module.exports = __webpack_require__(545);
 
 
 /***/ }),
@@ -41,7 +41,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var CrudProdutosService = (function () {
     function CrudProdutosService(http) {
         this.http = http;
-        this.url = "http://localhost:8080/api/moveis";
+        this.url = "/moveis";
         this.produto = [];
     }
     CrudProdutosService.prototype.getProdutos = function () {
@@ -89,8 +89,8 @@ var CrudProdutosService = (function () {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(370);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_rxjs_add_operator_map__ = __webpack_require__(98);
@@ -123,11 +123,11 @@ var HttpService = (function (_super) {
         options.headers.set('Content-Type', "application/json");
         _super.call(this, backend, options);
     }
-    HttpService.prototype.request = function (url, options) {
+    HttpService.prototype.request = function (request, options) {
         var usuario = localStorage.getItem('user');
         if (usuario) {
             var token = JSON.parse(usuario).token;
-            if (typeof url === 'string') {
+            if (typeof request === 'string') {
                 if (!options) {
                     // let's make option object
                     options = { headers: new __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Headers */]() };
@@ -138,10 +138,14 @@ var HttpService = (function (_super) {
             else {
                 // we have to add the token to the url object
                 // url.headers.set('Authorization', `Bearer ${token}`);
-                url.headers.set('Authorization', "" + token);
+                request.headers.set('Authorization', "" + token);
             }
         }
-        return _super.prototype.request.call(this, url, options).catch(this.catchAuthError(this));
+        var baseUrl = process.env.NODE_ENV === 'production' ?
+            'api-tccprojetotrocas.herokuapp.com/api' :
+            'http://localhost:8080/api';
+        request.url = "" + baseUrl + request.url;
+        return _super.prototype.request.call(this, request, options).catch(this.catchAuthError(this));
     };
     HttpService.prototype.catchAuthError = function (self) {
         // we have to pass HttpService's own instance here as `self`
@@ -162,6 +166,7 @@ var HttpService = (function (_super) {
     var _a, _b;
 }(__WEBPACK_IMPORTED_MODULE_1__angular_http__["e" /* Http */]));
 //# sourceMappingURL=/Users/thiagodorneles/Projects/jussamara/ProjetoTrocas/src/http.service.js.map
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(281)))
 
 /***/ }),
 
@@ -212,7 +217,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var TrocasService = (function () {
     function TrocasService(http) {
         this.http = http;
-        this.url = "http://localhost:8080/api/troca";
+        this.url = "/troca";
         this.produto = [];
     }
     TrocasService.prototype.trocarProduto = function (solicitanteId, produto) {
@@ -264,7 +269,7 @@ var TrocasService = (function () {
 
 /***/ }),
 
-/***/ 393:
+/***/ 394:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -285,7 +290,7 @@ var Produto = (function () {
 
 /***/ }),
 
-/***/ 543:
+/***/ 544:
 /***/ (function(module, exports) {
 
 function webpackEmptyContext(req) {
@@ -294,20 +299,20 @@ function webpackEmptyContext(req) {
 webpackEmptyContext.keys = function() { return []; };
 webpackEmptyContext.resolve = webpackEmptyContext;
 module.exports = webpackEmptyContext;
-webpackEmptyContext.id = 543;
+webpackEmptyContext.id = 544;
 
 
 /***/ }),
 
-/***/ 544:
+/***/ 545:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(636);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(637);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(680);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(669);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__environments_environment__ = __webpack_require__(681);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_app_module__ = __webpack_require__(670);
 
 
 
@@ -328,7 +333,7 @@ __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dyna
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_usuario__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__http_service__ = __webpack_require__(121);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_src_facade_async__ = __webpack_require__(559);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_common_src_facade_async__ = __webpack_require__(560);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_rxjs_Rx___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_rxjs_Rx__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_rxjs_add_operator_map__ = __webpack_require__(98);
@@ -361,7 +366,7 @@ var AuthService = (function () {
         this.router = router;
         this.http = http;
         this.usuario = new __WEBPACK_IMPORTED_MODULE_1_app_usuario__["a" /* Usuario */];
-        this.url = "http://localhost:8080/api/login";
+        this.url = "/login";
         this.mostrarMenuEmitter = new __WEBPACK_IMPORTED_MODULE_4__angular_common_src_facade_async__["a" /* EventEmitter */]();
     }
     AuthService.prototype.fazerLogin = function (usuario) {
@@ -415,7 +420,7 @@ var AuthService = (function () {
 
 /***/ }),
 
-/***/ 666:
+/***/ 667:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -482,12 +487,12 @@ var AlterarSenhaComponent = (function () {
 
 /***/ }),
 
-/***/ 667:
+/***/ 668:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_produto__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_produto__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_router__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_trocas_service__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_app_crud_produtos_service__ = __webpack_require__(120);
@@ -573,7 +578,7 @@ var AnuncioComponent = (function () {
 
 /***/ }),
 
-/***/ 668:
+/***/ 669:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -632,33 +637,33 @@ var AppComponent = (function () {
 
 /***/ }),
 
-/***/ 669:
+/***/ 670:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(181);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(627);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(370);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_forms__ = __webpack_require__(628);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_http__ = __webpack_require__(371);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_app_crud_produtos_service__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__app_component__ = __webpack_require__(669);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__http_service__ = __webpack_require__(121);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_app_login_form_auth_service__ = __webpack_require__(66);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__guarda_auth_guard_service__ = __webpack_require__(671);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__guarda_auth_guard_service__ = __webpack_require__(672);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10_app_trocas_service__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11_app_usuarios_service__ = __webpack_require__(79);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__trocas_trocas_component__ = __webpack_require__(676);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__anuncio_anuncio_component__ = __webpack_require__(667);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__tabela_produtos_tabela_produtos_component__ = __webpack_require__(675);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__form_produtos_form_produtos_component__ = __webpack_require__(670);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__inicio_inicio_component__ = __webpack_require__(672);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__login_form_login_form_component__ = __webpack_require__(673);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__usuario_tabela_usuario_tabela_component__ = __webpack_require__(679);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__usuario_form_usuario_form_component__ = __webpack_require__(677);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__usuario_perfil_usuario_perfil_component__ = __webpack_require__(678);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__recuperar_senha_form_recuperar_senha_form_component__ = __webpack_require__(674);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__alterar_senha_alterar_senha_component__ = __webpack_require__(666);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__trocas_trocas_component__ = __webpack_require__(677);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__anuncio_anuncio_component__ = __webpack_require__(668);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__tabela_produtos_tabela_produtos_component__ = __webpack_require__(676);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__form_produtos_form_produtos_component__ = __webpack_require__(671);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__inicio_inicio_component__ = __webpack_require__(673);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__login_form_login_form_component__ = __webpack_require__(674);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__usuario_tabela_usuario_tabela_component__ = __webpack_require__(680);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__usuario_form_usuario_form_component__ = __webpack_require__(678);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__usuario_perfil_usuario_perfil_component__ = __webpack_require__(679);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__recuperar_senha_form_recuperar_senha_form_component__ = __webpack_require__(675);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__alterar_senha_alterar_senha_component__ = __webpack_require__(667);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -760,13 +765,13 @@ var AppModule = (function () {
 
 /***/ }),
 
-/***/ 670:
+/***/ 671:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_app_crud_produtos_service__ = __webpack_require__(120);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_produto__ = __webpack_require__(393);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_app_produto__ = __webpack_require__(394);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_app_login_form_auth_service__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__(36);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FormProdutosComponent; });
@@ -848,7 +853,7 @@ var FormProdutosComponent = (function () {
 
 /***/ }),
 
-/***/ 671:
+/***/ 672:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -896,7 +901,7 @@ var AuthGuardService = (function () {
 
 /***/ }),
 
-/***/ 672:
+/***/ 673:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -942,7 +947,7 @@ var InicioComponent = (function () {
 
 /***/ }),
 
-/***/ 673:
+/***/ 674:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -994,7 +999,7 @@ var LoginFormComponent = (function () {
 
 /***/ }),
 
-/***/ 674:
+/***/ 675:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1043,7 +1048,7 @@ var RecuperarSenhaFormComponent = (function () {
 
 /***/ }),
 
-/***/ 675:
+/***/ 676:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1103,7 +1108,7 @@ var TabelaProdutosComponent = (function () {
 
 /***/ }),
 
-/***/ 676:
+/***/ 677:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1151,7 +1156,7 @@ var TrocasComponent = (function () {
 
 /***/ }),
 
-/***/ 677:
+/***/ 678:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1229,7 +1234,7 @@ var UsuarioFormComponent = (function () {
 
 /***/ }),
 
-/***/ 678:
+/***/ 679:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1290,7 +1295,7 @@ var UsuarioPerfilComponent = (function () {
 
 /***/ }),
 
-/***/ 679:
+/***/ 680:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1339,7 +1344,7 @@ var UsuarioTabelaComponent = (function () {
 
 /***/ }),
 
-/***/ 680:
+/***/ 681:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1388,7 +1393,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var UsuariosService = (function () {
     function UsuariosService(http) {
         this.http = http;
-        this.url = "http://localhost:8080/api/users/";
+        this.url = "/users/";
         this.usuarios = [];
     }
     UsuariosService.prototype.getListaUsuarios = function () {
