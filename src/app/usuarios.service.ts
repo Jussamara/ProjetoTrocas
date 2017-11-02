@@ -61,11 +61,19 @@ export class UsuariosService {
   }
 
   recuperarSenha(email): Observable<Boolean> {
-    debugger;
     const body = { email };
     const bodyString = JSON.stringify(body);
 
     return this.http.post(this.url + "recuperar-senha", bodyString)
+      .map((res:Response) => true)
+      .catch((error:any)=> Observable.throw(error));
+  }
+
+  alterarSenha(token, senha): Observable<Boolean> {
+    const body = { token, senha };
+    const bodyString = JSON.stringify(body);
+
+    return this.http.post(this.url + "alterar-senha", bodyString)
       .map((res:Response) => true)
       .catch((error:any)=> Observable.throw(error));
   }

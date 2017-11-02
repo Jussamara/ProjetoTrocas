@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Produto } from "app/produto";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { TrocasService } from "app/trocas.service";
 import { CrudProdutosService } from "app/crud-produtos.service";
 import { AuthService } from "app/login-form/auth.service";
-import { Router } from "@angular/router"
-
 @Component({
   selector: 'app-anuncio',
   templateUrl: './anuncio.component.html',
