@@ -1,0 +1,28 @@
+<div class="container">
+  <h2>Perfil do usuário</h2>
+  <section class="section">
+    <p>Nome: {{usuario.name}}</p>
+    <p>E-mail: {{usuario.email}}</p>
+    <p>Telefone: {{usuario.telefone}}</p>
+  </section>
+  <div class="divider"></div>
+  <section class="section">
+    <b>Produtos do usuário</b>
+    <div class="row">
+        <div class="col s4 m3" *ngFor="let produto of produtos; let cod = produto">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title">{{produto.nome}}</span>
+              <div class="card-image waves-effect waves-block waves-light">
+                <img class="activator" [src]="produto.image" />
+              </div>
+              <p>{{produto.descricao}}</p>
+            </div>
+            <div class="card-action">
+              <a [routerLink]="['/anuncio', produto._id]">Detalhes</a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+</div>

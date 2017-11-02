@@ -33,7 +33,7 @@ export class UsuariosService {
     let url = this.url + id;
 
     return this.http.get(url)
-      .map((res: Response) => res.json().pop())
+      .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error));
   }
 
@@ -54,8 +54,8 @@ export class UsuariosService {
       .catch((error: any) => Observable.throw(error));
   }
 
-  getProdutosDoUsuario(): Observable<Produto[]>{
-    return this.http.get(this.url + "moveis")
+  getProdutosDoUsuario(usuarioId: string): Observable<Produto[]>{
+    return this.http.get(`${this.url}${usuarioId}/moveis`)
       .map((res:Response) => res.json())
       .catch((error:any)=>Observable.throw(error));
   }

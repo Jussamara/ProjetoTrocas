@@ -23,6 +23,7 @@ import { InicioComponent } from './inicio/inicio.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { UsuarioTabelaComponent } from './usuario-tabela/usuario-tabela.component';
 import { UsuarioFormComponent } from './usuario-form/usuario-form.component';
+import { UsuarioPerfilComponent } from './usuario-perfil/usuario-perfil.component';
 import { RecuperarSenhaFormComponent } from './recuperar-senha-form/recuperar-senha-form.component';
 import { AlterarSenhaComponent } from './alterar-senha/alterar-senha.component';
 
@@ -38,7 +39,7 @@ const routes: Routes = [
   { path: 'usuario/novo', component: UsuarioFormComponent },
   { path: 'usuario/recuperar-senha', component: RecuperarSenhaFormComponent },
   { path: 'usuario/alterar-senha', component: AlterarSenhaComponent },
-  { path: 'refazer/:id', component: UsuarioFormComponent, canActivate: [ AuthGuardService ] },
+  { path: 'usuario/:id', component: UsuarioPerfilComponent, canActivate: [ AuthGuardService ] },
   { path: 'trocas', component: TrocasComponent, canActivate: [ AuthGuardService ] },
   { path: 'anuncio/:id', component: AnuncioComponent },
   { path: "*", redirectTo: 'inicio' }
@@ -50,6 +51,7 @@ const routes: Routes = [
     FormProdutosComponent,
     InicioComponent,
     LoginFormComponent,
+    UsuarioPerfilComponent,
     UsuarioTabelaComponent,
     UsuarioFormComponent,
     RecuperarSenhaFormComponent,
