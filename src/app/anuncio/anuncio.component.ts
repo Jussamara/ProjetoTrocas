@@ -53,7 +53,13 @@ export class AnuncioComponent implements OnInit {
         alert('solicitacao efetuada');
         this.router.navigate(['/trocas'])
       },
-      error => alert('erro na troca')
+      error => {
+        if (error.status == 400) {
+          alert('Você precisa ter algum móvel cadastrado para solicitar uma troca.')
+        } else {
+          alert('Ocorreu um erro. Tente novamente!')
+        }
+      }
     )
   }
 
