@@ -8,7 +8,9 @@
       <div class="card-content white-text">
         <span class="card-title">{{produto.nome}}</span>
         <div class="card-image waves-effect waves-block waves-light">
-          <img class="activator" [src]="produto.image" />
+          <a [routerLink]="['/anuncio', produto._id]">
+            <img class="activator" [src]="produto.image" />
+          </a>
         </div>
         <p>{{produto.descricao}}</p>
       </div>
