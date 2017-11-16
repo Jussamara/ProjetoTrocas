@@ -1,9 +1,9 @@
 <div class=container>
   <h4>{{titulo}}</h4>
-  <form class="form" name="recuperarSenhaForm" (ngSubmit)="recuperarSenha()">
+  <form #form="ngForm" class="form" name="recuperarSenhaForm" (ngSubmit)="recuperarSenha()">
     <div class="row">
       <div class="input-field col s6">
-        <input [(ngModel)]="email" id="email" name="email" type="text" class="validate">
+        <input [(ngModel)]="email" id="email" name="email" type="text" class="validate" required>
         <label class="active" for="email">Email</label>
       </div>
     </div>
