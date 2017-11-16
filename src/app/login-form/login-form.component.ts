@@ -17,7 +17,7 @@ export class LoginFormComponent implements OnInit {
               private router: Router) {}
 
   ngOnInit() {        
-    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
+    this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || 'inicio';
   }
 
   fazerLogin() {
