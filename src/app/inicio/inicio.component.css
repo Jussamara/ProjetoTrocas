@@ -1,0 +1,12 @@
+.card-image {
+  background-color: #fff;
+}
+.card-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.card-image img {
+  width: 250px;
+  height: 250px;
+}
