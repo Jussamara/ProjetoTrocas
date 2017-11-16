@@ -7,7 +7,7 @@
   text-overflow: ellipsis;
 }
 .card-description {
-  height: 42px;
+  height: 45px;
   padding: 5px 0;
   overflow: hidden;
   -ms-text-overflow: ellipsis;
