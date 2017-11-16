@@ -6,6 +6,18 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
+.card-description {
+  height: 42px;
+  padding: 5px 0;
+  overflow: hidden;
+  -ms-text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  display: block; /* Fallback for non-webkit */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
 .card-image img {
   width: 250px;
   height: 250px;
